@@ -4,7 +4,8 @@ pipeline {
         // LABS = credentials('labcreds')
         AWS_ACCESS_KEY_ID = credentials('aws-access-key-id')
         AWS_SECRET_ACCESS_KEY = credentials('aws-secret-access-key')
-        S3_BUCKET = 'your-s3-bucket-name' // Replace with your S3 bucket name.
+        S3_BUCKET = 'general-iamdave-mumbai' // Replace with your S3 bucket name.
+        AWS_DEFAULT_REGION = 'ap-south-1'
     }
     stages {
         stage('Build') {
@@ -29,7 +30,7 @@ pipeline {
                 // Configure AWS CLI
                 sh 'aws configure set aws_access_key_id $AWS_ACCESS_KEY_ID'
                 sh 'aws configure set aws_secret_access_key $AWS_SECRET_ACCESS_KEY'
-                sh 'aws configure set default.region us-east-1' // Set your AWS region here
+                sh 'aws configure set default.region ${AWS_DEFAULT_REGION}' // Set your AWS region here
 
                 // Upload the zip file to S3
                 sh 'aws s3 cp retailproject.zip s3://$S3_BUCKET/retailproject.zip'
