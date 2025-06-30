@@ -2,7 +2,6 @@ pipeline {
     agent any
 
     environment {
-        LABS = credentials('labcreds')  // Your existing lab credentials
         JAVA_HOME = '/opt/bitnami/java'  // Set your JAVA_HOME path
         PATH = "${env.JAVA_HOME}/bin:${env.PATH}"
         AWS_ACCESS_KEY_ID = credentials('aws-access-key-id')  // Access Key ID
