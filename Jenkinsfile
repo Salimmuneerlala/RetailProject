@@ -1,7 +1,7 @@
 pipeline {
     agent any
     environment {
-        LABS = credentials('labcreds')
+        // LABS = credentials('labcreds')
         AWS_ACCESS_KEY_ID = credentials('aws-access-key-id')
         AWS_SECRET_ACCESS_KEY = credentials('aws-secret-access-key')
         S3_BUCKET = 'your-s3-bucket-name' // Replace with your S3 bucket name.
