@@ -8,6 +8,7 @@ pipeline {
         AWS_SECRET_ACCESS_KEY = credentials('aws-secret-access-key')  // Secret Access Key
         AWS_DEFAULT_REGION = 'ap-south-1'  // Set your AWS region
         S3_BUCKET_NAME = 'general-iamdave-mumbai' // Set your S3 bucket name
+        S3_FOLDER_NAME = 'Jenkins/retailproject' // Set your S3 folder name
     }
     
     
@@ -25,7 +26,7 @@ pipeline {
         stage('Install Dependencies') {
             steps {
                 script {
-                    // Install project dependencies
+                    // Install project dependencies mentioned in pipfile
                     sh './retail_pipeline_venv/bin/pipenv install'
                 }
             }
@@ -41,7 +42,7 @@ pipeline {
         stage('Package') {
             steps {
                 script {
-                    // Create the zip file excluding the venv directory
+                    // Create the zip file using all project files but excluding the venv directory
                     sh 'zip -r retailproject.zip . -x "retail_pipeline_venv/*"'
                 }
             }
@@ -57,7 +58,7 @@ pipeline {
                     '''
 
                     // Copy the zip file to the specified S3 bucket
-                    sh "aws s3 cp retailproject.zip s3://${env.S3_BUCKET_NAME}/"
+                    sh "aws s3 cp retailproject.zip s3://${env.S3_BUCKET_NAME}/${env.S3_FOLDER_NAME}/"
                 }
             }
         }
