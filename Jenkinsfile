@@ -8,7 +8,7 @@ pipeline {
         AWS_SECRET_ACCESS_KEY = credentials('aws-secret-access-key')  // Secret Access Key
         AWS_DEFAULT_REGION = 'ap-south-1'  // Set your AWS region
         S3_BUCKET_NAME = 'general-iamdave-mumbai' // Set your S3 bucket name
-        S3_FOLDER_NAME = 'Jenkins/retailproject' // Set your S3 folder name
+        S3_FOLDER_NAME = 'retailproject' // Set your S3 folder name
     }
     
     
